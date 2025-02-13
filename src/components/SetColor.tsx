@@ -1,7 +1,5 @@
 "use client";
 
-import { CartProductType, SelectedImgType } from "./ProductDetails";
-
 interface SetColorProps {
   images: SelectedImgType[];
   cartProduct: CartProductType;
