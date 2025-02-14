@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ReusableContainter from "./ReusableContainter";
+import Container from "./reusables/Container";
 import FooterList from "./FooterList";
 import { MdFacebook } from "react-icons/md";
 import {
@@ -11,7 +11,7 @@ import {
 export default function Footer() {
   return (
     <footer className="bg-slate-700 text-slate-200 text-sm mt-16">
-      <ReusableContainter>
+      <Container>
         <div className="pb-4 pt-12 flex justify-between flex-col md:flex-row">
           <FooterList>
             <h3 className="text-base font-bold">Shop categories</h3>
@@ -58,7 +58,7 @@ export default function Footer() {
             </div>
           </FooterList>
         </div>
-      </ReusableContainter>
+      </Container>
     </footer>
   );
 }

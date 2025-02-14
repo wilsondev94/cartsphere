@@ -1,10 +1,8 @@
-interface ReusableContainterProps {
+interface ContainerProps {
   children: React.ReactNode;
 }
 
-export default function ReusableContainter({
-  children,
-}: Readonly<ReusableContainterProps>) {
+export default function Container({ children }: Readonly<ContainerProps>) {
   return (
     <div className="max-w-[1920px] mx-auto xl:px-20 md:px-2 px-4">
       {children}

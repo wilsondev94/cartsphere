@@ -1,12 +1,12 @@
 import HomeBanner from "@/components/HomeBanner";
 import ProductCard from "@/components/ProductCard";
-import ReusableContainter from "@/components/ReusableContainter";
+import Container from "@/components/reusables/Container";
 import { products } from "@/lib/utils";
 
 export default function Home() {
   return (
     <div className="p-8">
-      <ReusableContainter>
+      <Container>
         <div>
           <HomeBanner />
         </div>
@@ -15,7 +15,7 @@ export default function Home() {
             <ProductCard key={product.name} data={product} />
           ))}
         </div>
-      </ReusableContainter>
+      </Container>
     </div>
   );
 }

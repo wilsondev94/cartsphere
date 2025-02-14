@@ -1,7 +1,7 @@
 "use client";
 
 import moment from "moment";
-import ReusableHeading from "./ReusableHeading";
+import Heading from "./reusables/Heading";
 import { Rating } from "@mui/material";
 import Avatar from "./Avatar";
 
@@ -12,7 +12,7 @@ interface RatingListProps {
 export default function RatingList({ product }: RatingListProps) {
   return (
     <div>
-      <ReusableHeading title="Product review" />
+      <Heading title="Product review" />
       <div className="text-sm mt-2">
         {product.reviews &&
           product.reviews.map((review: any) => (

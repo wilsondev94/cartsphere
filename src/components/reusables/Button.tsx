@@ -2,7 +2,7 @@
 
 import { IconType } from "react-icons";
 
-interface ReusableButtonProps {
+interface ButtonProps {
   label: string;
   disabled?: boolean;
   outline?: boolean;
@@ -12,7 +12,7 @@ interface ReusableButtonProps {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function ReusableButton({
+export default function Button({
   label,
   disabled,
   outline,
@@ -20,7 +20,7 @@ export default function ReusableButton({
   custom,
   icon: Icon,
   onClick,
-}: ReusableButtonProps) {
+}: ButtonProps) {
   return (
     <button
       disabled={disabled}

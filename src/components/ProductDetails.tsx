@@ -4,7 +4,7 @@ import { Rating } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import SetColor from "./SetColor";
 import ToggleQuantity from "./ToggleQUantity";
-import ReusableButton from "./ReusableButton";
+import Button from "./reusables/Button";
 import ProductImage from "./ProductImage";
 import { useCart } from "@/hook/useCart";
 import { MdCheckCircle } from "react-icons/md";
@@ -108,7 +108,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               <span>Product added to cart</span>
             </p>
             <div className="max-w-[300px]">
-              <ReusableButton
+              <Button
                 label="View cart"
                 outline
                 onClick={() => {
@@ -133,7 +133,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             />
             <WhiteSpace />
             <div className="max-w-[300px]">
-              <ReusableButton
+              <Button
                 label="Add to cart"
                 onClick={() => addProductToCart(cartProduct)}
               />
