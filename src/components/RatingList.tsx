@@ -3,6 +3,7 @@
 import moment from "moment";
 import ReusableHeading from "./ReusableHeading";
 import { Rating } from "@mui/material";
+import Avatar from "./Avatar";
 
 interface RatingListProps {
   product: any;
@@ -17,7 +18,8 @@ export default function RatingList({ product }: RatingListProps) {
           product.reviews.map((review: any) => (
             <div key={review.id} className="max-w-[300px]">
               <div className="flex items-center gap-2">
-                <div>Avatar</div>
+                <Avatar src={review.user.image} />
+
                 <div>{review?.user.name}</div>
                 <div>{moment(review.createdDate).fromNow()}</div>
               </div>

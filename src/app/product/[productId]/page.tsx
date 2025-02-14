@@ -1,13 +1,13 @@
 import ProductDetails from "@/components/ProductDetails";
 import RatingList from "@/components/RatingList";
 import ReusableContainter from "@/components/ReusableContainter";
-import { product } from "@/lib/utils";
+import { products } from "@/lib/utils";
 
 interface ProductIdProps {
   productId?: string;
 }
 export default function Product({ params }: { params: ProductIdProps }) {
-  console.log(params);
+  const product = products.find((product) => product.id === params.productId);
   return (
     <div className="p-8">
       <ReusableContainter>

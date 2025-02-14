@@ -5,7 +5,7 @@ declare type CartProductType = {
   category: string;
   brand: string;
   quantity: number;
-  price: string;
+  price: number;
   selectedImg: SelectedImgType;
 };
 

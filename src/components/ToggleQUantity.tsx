@@ -1,7 +1,7 @@
 "use client";
 
 interface ToggleQuantityProps {
-  quantityCounter: string;
+  quantityCounter: boolean;
   cartProduct: CartProductType;
   handleIncrease: () => void;
   handleDecrease: () => void;

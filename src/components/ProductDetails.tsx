@@ -1,11 +1,14 @@
 "use client";
 
 import { Rating } from "@mui/material";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import SetColor from "./SetColor";
 import ToggleQuantity from "./ToggleQUantity";
 import ReusableButton from "./ReusableButton";
 import ProductImage from "./ProductImage";
+import { useCart } from "@/hook/useCart";
+import { MdCheckCircle } from "react-icons/md";
+import { useRouter } from "next/navigation";
 
 interface ProductDetailsProps {
   product: any;
@@ -15,7 +18,12 @@ function WhiteSpace() {
   return <div className="w-[30%] my-2" />;
 }
 
-export default function ProjectDetails({ product }: ProductDetailsProps) {
+export default function ProductDetails({ product }: ProductDetailsProps) {
+  const router = useRouter();
+
+  const { addProductToCart, cartProducts } = useCart();
+  const [isProductIncart, setIsproductInCart] = useState(false);
+
   const [cartProduct, setCartProduct] = useState<CartProductType>({
     id: product.id,
     name: product.name,
@@ -23,16 +31,13 @@ export default function ProjectDetails({ product }: ProductDetailsProps) {
     category: product.category,
     brand: product.brand,
     selectedImg: product.images[0],
-    quantity: 1,
+    quantity: 0,
     price: product.price,
   });
 
-  const handleColorSelect = useCallback(
-    function (value: SelectedImgType) {
-      setCartProduct((prev) => ({ ...prev, selectedImg: value }));
-    },
-    [cartProduct]
-  );
+  const handleColorSelect = useCallback(function (value: SelectedImgType) {
+    setCartProduct((prev) => ({ ...prev, selectedImg: value }));
+  }, []);
 
   const handleIncrease = useCallback(
     function () {
@@ -51,6 +56,20 @@ export default function ProjectDetails({ product }: ProductDetailsProps) {
 
     [cartProduct]
   );
+
+  useEffect(() => {
+    setIsproductInCart(false);
+
+    if (cartProducts) {
+      const existingProductIndex = cartProducts.findIndex(
+        (ProductItem) => ProductItem.id === product.id
+      );
+
+      if (existingProductIndex > -1) {
+        setIsproductInCart(true);
+      }
+    }
+  }, [cartProducts, product.id]);
 
   const productRating =
     product.reviews?.reduce((acc: number, item: any) => item.rating + acc, 0) /
@@ -82,26 +101,45 @@ export default function ProjectDetails({ product }: ProductDetailsProps) {
           {product.inStock ? "In stock" : "Out of stock"}
         </div>
         <WhiteSpace />
-        <SetColor
-          images={product.images}
-          cartProduct={cartProduct}
-          handleColorSelect={handleColorSelect}
-        />
-        <WhiteSpace />
-        <ToggleQuantity
-          cartProduct={cartProduct}
-          quantityCounter={""}
-          handleDecrease={handleDecrease}
-          handleIncrease={handleIncrease}
-        />
-        <WhiteSpace />
-        <div className="max-w-[300px]">
-          <ReusableButton
-            label="Add to cart"
-            outline
-            onClick={() => console.log("Add to cart")}
-          />
-        </div>
+        {isProductIncart ? (
+          <>
+            <p className="flex items-center gap-1 mb-2 text-slate-500">
+              <MdCheckCircle size={20} className="text-teal-400" />
+              <span>Product added to cart</span>
+            </p>
+            <div className="max-w-[300px]">
+              <ReusableButton
+                label="View cart"
+                outline
+                onClick={() => {
+                  router.push("/cart");
+                }}
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <SetColor
+              images={product.images}
+              cartProduct={cartProduct}
+              handleColorSelect={handleColorSelect}
+            />
+            <WhiteSpace />
+            <ToggleQuantity
+              cartProduct={cartProduct}
+              quantityCounter={""}
+              handleDecrease={handleDecrease}
+              handleIncrease={handleIncrease}
+            />
+            <WhiteSpace />
+            <div className="max-w-[300px]">
+              <ReusableButton
+                label="Add to cart"
+                onClick={() => addProductToCart(cartProduct)}
+              />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
