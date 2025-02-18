@@ -2,8 +2,14 @@ import Link from "next/link";
 import Container from "./reusables/Container";
 import CartCount from "./CartCount";
 import UserMenu from "./UserMenu";
+import { getCurrentUser } from "@/lib/actions/getCurrentUser";
 
-export default function Navbar() {
+export default async function Navbar() {
+  const user = await getCurrentUser();
+  const currentUser = user
+    ? { ...user, emailVerified: user.emailVerified ?? null }
+    : null;
+
   return (
     <div className="sticky top-0 bg-slate-200 z-30 shadow-sm">
       <div
@@ -16,7 +22,7 @@ export default function Navbar() {
             <div className="hidden md:block">Search</div>
             <div className="flex items-center gap-8 md:gap-12">
               <CartCount />
-              <UserMenu />
+              <UserMenu currentUser={currentUser} />
             </div>
           </div>
         </Container>

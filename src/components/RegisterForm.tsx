@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import FormFields from "./reusables/FormFields";
 import Heading from "./reusables/Heading";
@@ -11,8 +11,13 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { SafeUser } from "./UserMenu";
 
-export default function RegisterForm() {
+interface RegisterFormProps {
+  currentUser: SafeUser | null;
+}
+
+export default function RegisterForm({ currentUser }: RegisterFormProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -55,6 +60,17 @@ export default function RegisterForm() {
         setIsLoading(false);
       });
   };
+
+  useEffect(() => {
+    if (currentUser) {
+      router.push("/cart");
+      router.refresh();
+    }
+  }, [currentUser, router]);
+
+  if (currentUser) {
+    return <p>Logged in, Redirecting...</p>;
+  }
 
   return (
     <>
