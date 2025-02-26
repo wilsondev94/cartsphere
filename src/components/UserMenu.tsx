@@ -37,7 +37,7 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
                 <Link href="/order">
                   <MenuItem onClick={toggleOpen}>Your Orders</MenuItem>
                 </Link>
-                <Link href="/order">
+                <Link href="/admin">
                   <MenuItem onClick={toggleOpen}>Admin Dashboard</MenuItem>
                 </Link>
                 <hr />
