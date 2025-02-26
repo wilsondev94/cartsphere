@@ -1,22 +1,13 @@
 "use client";
 
-import { useCallback, useState } from "react";
-import Avatar from "./Avatar";
-import { AiFillCaretDown } from "react-icons/ai";
-import Link from "next/link";
-import MenuItem from "./reusables/MenuItem";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
+import { useCallback, useState } from "react";
+import { AiFillCaretDown } from "react-icons/ai";
+import Avatar from "./Avatar";
 import Backdrop from "./Backdrop";
-import { User } from "@prisma/client";
-
-export type SafeUser = Omit<
-  User,
-  "createdAt" | "updatedAt" | "emailVerified"
-> & {
-  createdAt: string;
-  updatedAt: string;
-  emailVerified: string | null;
-};
+import MenuItem from "./reusables/MenuItem";
+import { SafeUser } from "@/types";
 
 interface UserMenuProps {
   currentUser: SafeUser | null;
@@ -36,7 +27,7 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
           onClick={toggleOpen}
           className="p-2 border-[1px] border-slate-400 flex flex-row gap-1 rounded-full cursor-pointer shadow-md transition text-slate-700"
         >
-          <Avatar />
+          <Avatar src={currentUser?.image} />
           <AiFillCaretDown />
         </div>
         {isOpen && (

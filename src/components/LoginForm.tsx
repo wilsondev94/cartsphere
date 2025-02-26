@@ -10,7 +10,7 @@ import { AiOutlineGoogle } from "react-icons/ai";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { SafeUser } from "./UserMenu";
+import { SafeUser } from "@/types";
 
 interface LoginFormProps {
   currentUser: SafeUser | null;
@@ -73,7 +73,7 @@ export default function LoginForm({ currentUser }: LoginFormProps) {
         label="Continue with Google"
         outline
         icon={AiOutlineGoogle}
-        onClick={() => {}}
+        onClick={() => signIn("google")}
       />
       <hr className="bg-slate-300 w-full h-px" />
       <FormFields

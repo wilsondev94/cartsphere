@@ -7,8 +7,16 @@ import Heading from "./reusables/Heading";
 import Button from "./reusables/Button";
 import ShoppingCartContent from "./ShoppingCartContent";
 import { formatPrice } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import { SafeUser } from "@/types";
 
-export default function ShoppingCart() {
+interface ShoppingCartProps {
+  currentUser: SafeUser | null;
+}
+
+export default function ShoppingCart({ currentUser }: ShoppingCartProps) {
+  const router = useRouter();
+
   const { cartProducts, clearCart, cartTotalAmount } = useCart();
 
   if (!cartProducts || cartProducts.length === 0)
@@ -53,7 +61,11 @@ export default function ShoppingCart() {
           <p className="text-slate-500">
             Taxes and shipping calculated at checkout
           </p>
-          <Button label="Checkout" small onClick={() => {}} />
+          <Button
+            label={currentUser ? "Checkout" : "Login to Checkout"}
+            small
+            onClick={() => router.push(currentUser ? "/checkout" : "/login")}
+          />
 
           <Link
             href="/"

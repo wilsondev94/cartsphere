@@ -11,7 +11,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { SafeUser } from "./UserMenu";
+import { SafeUser } from "@/types";
 
 interface RegisterFormProps {
   currentUser: SafeUser | null;
@@ -79,7 +79,7 @@ export default function RegisterForm({ currentUser }: RegisterFormProps) {
         label="Sign up with Google"
         outline
         icon={AiOutlineGoogle}
-        onClick={() => {}}
+        onClick={() => signIn("google")}
       />
       <hr className="bg-slate-300 w-full h-px" />
       <FormFields

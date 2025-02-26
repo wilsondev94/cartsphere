@@ -6,8 +6,11 @@ import { products } from "@/lib/utils";
 interface ProductIdProps {
   productId?: string;
 }
-export default function Product({ params }: { params: ProductIdProps }) {
-  const product = products.find((product) => product.id === params.productId);
+export default async function Product({ params }: { params: ProductIdProps }) {
+  const param = await params;
+
+  const product = products.find((product) => product.id === param.productId);
+
   return (
     <div className="p-8">
       <Container>
