@@ -5,19 +5,13 @@ import { getCurrentUser } from "@/lib/actions/getCurrentUser";
 export async function POST(req: Request) {
   const currentUser = await getCurrentUser();
 
-  if (!currentUser || currentUser.role !== "ADMIN") return NextResponse.error();
+  if (!currentUser || currentUser.role !== "USER")
+    return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
 
   const body = await req.json();
-  const {
-    name,
-    description,
-    price,
-    category,
-    brand,
-    inStock,
-    images,
-    reviews,
-  } = body;
+  console.log("Received body:", body);
+
+  const { name, description, price, category, brand, inStock, images } = body;
 
   const product = await prisma.product.create({
     data: {
@@ -27,7 +21,6 @@ export async function POST(req: Request) {
       brand,
       inStock,
       images,
-      reviews,
       price: parseFloat(price),
     },
   });

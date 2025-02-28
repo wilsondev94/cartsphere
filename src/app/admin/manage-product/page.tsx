@@ -1,3 +1,12 @@
+import ManageProducts from "@/components/ManageProducts";
+import Container from "@/components/reusables/Container";
+
 export default function page() {
-  return <div>Manage Product page</div>;
+  return (
+    <div className="pt-8">
+      <Container>
+        <ManageProducts />
+      </Container>
+    </div>
+  );
 }
