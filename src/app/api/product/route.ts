@@ -9,7 +9,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
 
   const body = await req.json();
-  console.log("Received body:", body);
 
   const { name, description, price, category, brand, inStock, images } = body;
 
@@ -23,6 +22,23 @@ export async function POST(req: Request) {
       images,
       price: parseFloat(price),
     },
+  });
+
+  return NextResponse.json(product);
+}
+
+export async function PUT(req: Request) {
+  const currentUser = await getCurrentUser();
+  if (!currentUser || currentUser.role !== "USER")
+    return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
+
+  const body = await req.json();
+
+  const { id, inStock } = body;
+
+  const product = await prisma.product.update({
+    where: { id: id },
+    data: { inStock },
   });
 
   return NextResponse.json(product);

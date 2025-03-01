@@ -18,19 +18,21 @@ export default async function getProducts(params: ProductParams) {
   if (category) query.category = category;
 
   const products = await prisma.product.findMany({
-    ...query,
-    OR: [
-      {
-        name: {
-          contain: searchString,
-          mode: "insensitive",
+    where: {
+      ...query,
+      OR: [
+        {
+          name: {
+            contains: searchString,
+            mode: "insensitive",
+          },
+          description: {
+            contains: searchString,
+            mode: "insensitive",
+          },
         },
-        description: {
-          contain: searchString,
-          mode: "insensitive",
-        },
-      },
-    ],
+      ],
+    },
     include: {
       reviews: {
         include: {

@@ -1,6 +1,6 @@
 import prisma from "../prismaDb";
 
-export default async function getProducts() {
+export default async function getOrders() {
   try {
     const orders = await prisma.order.findMany({
       include: {

@@ -1,7 +1,7 @@
 //I am changing the image links from firebase to amazon, firebase has issues with these direct links. Please remember to add the amazon link(that will show up at the error) instead of firebase at the cofig for it to work out.
 
 import { AiFillPhone, AiOutlineDesktop, AiOutlineLaptop } from "react-icons/ai";
-import { MdOutlineKeyboard, MdStorefront, MdTv } from "react-icons/md";
+import { MdOutlineKeyboard, MdStorefront, MdTv, MdWatch } from "react-icons/md";
 
 export const products = [
   {
@@ -193,6 +193,7 @@ export function formatPrice(amount: number) {
 
 export const categories = [
   { label: "All", icon: MdStorefront },
+  { label: "Watch", icon: MdWatch },
   { label: "Phone", icon: AiFillPhone },
   { label: "Laptop", icon: AiOutlineLaptop },
   { label: "Desktop", icon: AiOutlineDesktop },
