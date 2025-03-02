@@ -1,12 +1,12 @@
 import prisma from "../prismaDb";
 
-interface ProductParams {
+export interface ProductParams {
   category?: string | null;
   search?: string | null;
 }
 
 export default async function getProducts(params: ProductParams) {
-  const { category, search } = params;
+  const { category, search } = await params;
 
   let searchString = search;
 

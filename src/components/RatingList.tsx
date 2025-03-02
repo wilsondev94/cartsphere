@@ -14,8 +14,8 @@ export default function RatingList({ product }: RatingListProps) {
     <div>
       <Heading title="Product review" />
       <div className="text-sm mt-2">
-        {product.reviews &&
-          product.reviews.map((review: any) => (
+        {product?.reviews &&
+          product?.reviews.map((review: any) => (
             <div key={review.id} className="max-w-[300px]">
               <div className="flex items-center gap-2">
                 <Avatar src={review.user.image} />

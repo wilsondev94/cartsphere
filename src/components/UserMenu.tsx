@@ -34,7 +34,7 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
           <div className="absolute rounded-md shadow-md w-[170px] bg-white overflow-hidden right-0 top-12 flex flex-col cursor-pointer">
             {currentUser ? (
               <div>
-                <Link href="/order">
+                <Link href="/orders">
                   <MenuItem onClick={toggleOpen}>Your Orders</MenuItem>
                 </Link>
                 <Link href="/admin">

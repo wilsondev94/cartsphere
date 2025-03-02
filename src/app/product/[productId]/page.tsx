@@ -1,7 +1,7 @@
 import ProductDetails from "@/components/ProductDetails";
 import RatingList from "@/components/RatingList";
 import Container from "@/components/reusables/Container";
-import { products } from "@/lib/utils";
+import getProductById from "@/lib/actions/getProductById";
 
 interface ProductIdProps {
   productId?: string;
@@ -9,7 +9,7 @@ interface ProductIdProps {
 export default async function Product({ params }: { params: ProductIdProps }) {
   const param = await params;
 
-  const product = products.find((product) => product.id === param.productId);
+  const product = await getProductById(param);
 
   return (
     <div className="p-8">

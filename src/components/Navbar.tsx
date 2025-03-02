@@ -3,6 +3,7 @@ import Container from "./reusables/Container";
 import CartCount from "./CartCount";
 import UserMenu from "./UserMenu";
 import { getCurrentUser } from "@/lib/actions/getCurrentUser";
+import CategoriesNavbar from "./CategoriesNavbar";
 
 export default async function Navbar() {
   const user = await getCurrentUser();
@@ -27,6 +28,7 @@ export default async function Navbar() {
           </div>
         </Container>
       </div>
+      <CategoriesNavbar />
     </div>
   );
 }
