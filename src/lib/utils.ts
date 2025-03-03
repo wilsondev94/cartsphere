@@ -191,6 +191,10 @@ export function formatPrice(amount: number) {
   }).format(amount);
 }
 
+export function formatNumber(digit: number) {
+  return new Intl.NumberFormat("en-NG").format(digit);
+}
+
 export const categories = [
   { label: "All", icon: MdStorefront },
   { label: "Watch", icon: MdWatch },

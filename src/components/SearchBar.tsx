@@ -2,17 +2,12 @@
 
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import queryString from "query-string";
+import qs from "query-string";
 
 export default function SearchBar() {
   const router = useRouter();
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<FieldValues>({
+  const { register, handleSubmit, reset } = useForm<FieldValues>({
     defaultValues: {
       search: "",
     },
@@ -21,7 +16,7 @@ export default function SearchBar() {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (!data.search) return router.push("/");
 
-    const url = queryString.stringifyUrl(
+    const url = qs.stringifyUrl(
       {
         url: "/",
         query: {
