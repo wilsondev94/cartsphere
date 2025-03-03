@@ -5,7 +5,7 @@ import { getCurrentUser } from "@/lib/actions/getCurrentUser";
 export async function POST(req: Request) {
   const currentUser = await getCurrentUser();
 
-  if (!currentUser || currentUser.role !== "USER")
+  if (!currentUser || currentUser.role !== "ADMIN")
     return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
 
   const body = await req.json();
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
 
 export async function PUT(req: Request) {
   const currentUser = await getCurrentUser();
-  if (!currentUser || currentUser.role !== "USER")
+  if (!currentUser || currentUser.role !== "ADMIN")
     return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
 
   const body = await req.json();

@@ -7,7 +7,7 @@ import { getCurrentUser } from "@/lib/actions/getCurrentUser";
 
 export default async function AddProductPage() {
   const currentUser = await getCurrentUser();
-  if (!currentUser || currentUser.role !== "USER")
+  if (!currentUser || currentUser.role !== "ADMIN")
     return <NoCurrentUser title="Opps! Access denied" />;
 
   return (

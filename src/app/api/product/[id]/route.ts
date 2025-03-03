@@ -8,7 +8,7 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   const currentUser = await getCurrentUser();
-  if (!currentUser || currentUser.role !== "USER")
+  if (!currentUser || currentUser.role !== "ADMIN")
     return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
 
   const param = await params;

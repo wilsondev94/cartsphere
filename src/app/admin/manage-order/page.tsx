@@ -6,7 +6,7 @@ import getOrders from "@/lib/actions/getOrders";
 
 export default async function page() {
   const currentUser = await getCurrentUser();
-  if (!currentUser || currentUser.role !== "USER")
+  if (!currentUser || currentUser.role !== "ADMIN")
     return <NoCurrentUser title="Opps! Access denied" />;
 
   const orders = await getOrders();
